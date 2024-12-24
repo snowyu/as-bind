@@ -5,13 +5,14 @@ import {
   IdentifierExpression,
   FunctionPrototype,
   StringLiteralExpression,
-  Module,
+  // Module,
   Function,
   DeclaredElement,
   Type
 } from "assemblyscript/dist/assemblyscript.js";
 import { Transform } from "assemblyscript/dist/transform.js";
 import { TypeDef } from "./lib/types";
+import binaryen from "types:assemblyscript/lib/binaryen";
 
 function isInternalElement(element: DeclaredElement) {
   return element.internalName.startsWith("~");
@@ -73,7 +74,7 @@ function extractTypeIdsFromFunction(func: Function) {
 const SECTION_NAME = "as-bind_bindings";
 
 export default class AsBindTransform extends Transform {
-  afterCompile(module: Module) {
+  afterCompile(module: binaryen.Module) {
     const flatExportedFunctions = [
       ...this.program.elementsByDeclaration.values()
     ]

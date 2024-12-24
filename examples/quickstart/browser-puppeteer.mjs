@@ -41,7 +41,7 @@ http
   const browserQuickstartJs = output[0].code;
 
   console.log("Launching the pupeteer browser and page...");
-  const browser = await puppeteer.launch();
+  const browser = await puppeteer.launch({headless: 'new'});
   const page = await browser.newPage();
   await page.goto("http://localhost:8000/browser.html");
 
